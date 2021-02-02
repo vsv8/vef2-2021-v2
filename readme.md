@@ -88,7 +88,7 @@ Setja skal upp `eslint` til að linta JavaScript kóða, gefin er `.eslintrc.js`
 
 ## Sett fyrir
 
-Verkefni sett fyrir í fyrirlestri fimmtudaginn 28. janúar 2021.
+Verkefni sett fyrir í fyrirlestri fimmtudaginn 28. janúar 2021. Sett fyrir í raun 2. feb á Canvas.
 
 ## Skil
 
