@@ -1,6 +1,6 @@
 # Vef2 2021, verkefni 2
 
-[Kynning í fyrirlestri](https://youtu.be/).
+[Kynning í fyrirlestri](https://www.youtube.com/watch?v=1kRJBE040oY).
 
 Verkefnið snýst um að útbúa einfaldan undirskriftarlista með skráningu og birtingu skráninga.
 
