@@ -1,0 +1,55 @@
+<%- include('header') -%>
+
+<h1>Undirskriftalisti</h1>
+
+<form method="post" action="/">
+  <div>
+    <label for="name">Nafn</label>
+    <input type="text" name="name" id="name" value="<% name %>" class="">
+  </div>
+  <div>
+    <label for="nationalId">Kennitala</label>
+    <input type="text" name="nationalId" id="nationalId" value="<% nationalId %>" class="">
+  </div>
+  <div>
+    <label for="comment">Athugasemd:</label>
+    <textarea name="comment" value="<% comment %>"></textarea>
+  </div>
+  <div>
+    <label><input type="checkbox" name="anonymous" value="true">Ekki birta nafn á lista</label>
+  </div>
+
+  <% if (errors.length > 0) { %>
+    <h2>Vandræði við undirskrift:</h2>
+    <ul class="errors">
+      <% errors.forEach((error) => { %>
+        <li class="error"><label for="<%= error.param %>"><%= error.msg %></label></li>
+      <% }); %>
+    </ul>
+  <% } %>
+
+  <button>Skrifa undir</button>
+</form>
+
+<% if(signatures.length === 0) { %>
+    <div class="">
+      <p class="">Engar undirskriftir</p>
+    </div>
+  <% } else { %>
+  <table class="">
+    <tr class="">
+      <td class=""><strong>Dags</strong></td>
+      <td class=""><strong>Nafn</strong></td>
+      <td class=""><strong>Athugasemd</strong></td>
+    </tr>
+    <% signatures.forEach((sign) => { %>
+        <tr class="">
+          <td class=""><%= sign.signed %></td>
+          <td class=""><%= sign.anonymous ? '' : sign.name %></td>
+          <td class=""><%= sign.comment %></td>
+        </tr>
+    <% }); %>
+  </table>
+<% } %>
+
+<%- include('footer') -%>
