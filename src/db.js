@@ -13,7 +13,9 @@ if (!connectionString) {
   process.exit(1);
 }
 
-const pool = new pg.Pool({ connectionString });
+const ssl = nodeEnv !== 'development' ? { rejectUnauthorized: false } : false;
+
+const pool = new pg.Pool({ connectionString, ssl });
 
 pool.on('error', (err) => {
   console.error('Unexpected error on idle client', err);
