@@ -6,11 +6,11 @@
   </div>
   <form class="items" method="post" action="/">
     <div class="form<%= locals.isInvalid('name', errors) ?  ' form--invalid' : '' %>">
-      <label for="name">Nafn</label>
+      <label for="name">Nafn*</label>
       <input class="text" type="text" name="name" id="name" value="<% name %>" class="">
     </div>
     <div class="form<%= locals.isInvalid('nationalId', errors) ?  ' form--invalid' : '' %>">
-      <label for="nationalId">Kennitala</label>
+      <label for="nationalId">Kennitala*</label>
       <input class="text" type="text" name="nationalId" id="nationalId" value="<% nationalId %>" class="">
     </div>
     <div class="form<%= locals.isInvalid('comment', errors) ?  ' form--invalid' : '' %>">
@@ -21,17 +21,15 @@
 
     <% if (errors.length > 0) { %>
       <div class="sign-element">
-        <h2>Vandræði við undirskrift:</h2>
+        <h3>Vandræði við undirskrift:</h3>
       </div>
         <ul class="errors">
-          <% errors.forEach((error) => { %>
-            <div class="sign-element">
+        <% errors.forEach((error) => { %>
+          <div class="sign-element">
             <li class="error"><label for="<%= error.param %>"><%= error.msg %></label></li>
-
-            </div>
-          <% }); %>
-        </ul>
-      
+          </div>
+        <% }); %>
+      </ul>
     <% } %>
     <div class="sign-element">
       <button>Skrifa undir</button>
@@ -43,21 +41,24 @@
 
   <div class="items">
     <% if(signatures.length === 0) { %>
-        <div class="">
-          <p class="">Engar undirskriftir</p>
-        </div>
-      <% } else { %>
-      <table class="">
-        <tr class="">
-          <td class=""><strong>Dags</strong></td>
-          <td class=""><strong>Nafn</strong></td>
-          <td class=""><strong>Athugasemd</strong></td>
+      <div class="sign-element">
+        <p class="">Engar undirskriftir</p>
+      </div>
+    <% } else { %>
+      <div class="sign-element">
+        <h2>Undirskriftir</h2>
+      </div>
+      <table>
+        <tr>
+          <td><strong>Dags</strong></td>
+          <td><strong>Nafn</strong></td>
+          <td><strong>Athugasemd</strong></td>
         </tr>
         <% signatures.forEach((sign) => { %>
-            <tr class="">
-              <td class=""><%= new Date(sign.signed).toLocaleString().split(',')[0] %></td>
-              <td class=""><%= sign.anonymous ? '' : sign.name %></td>
-              <td class=""><%= sign.comment %></td>
+            <tr>
+              <td><%= new Date(sign.signed).toLocaleString().split(',')[0] %></td>
+              <td><%= sign.anonymous ? '' : sign.name %></td>
+              <td><%= sign.comment %></td>
             </tr>
         <% }); %>
       </table>

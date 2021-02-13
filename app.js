@@ -26,7 +26,7 @@ function notFoundHandler(req, res, next) { // eslint-disable-line
 
 function errorHandler(error, req, res, next) { // eslint-disable-line
   console.error(error);
-  res.status(500).render('error', { title: 'Villa', error, message: 'nei' });
+  res.status(500).render('error', { title: 'Villa', error, message: 'villa' });
 }
 
 app.use('/', router);

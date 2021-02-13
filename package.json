@@ -5,6 +5,7 @@
   "main": ".eslintrc.js",
   "type": "module",
   "scripts": {
+    "setup": "node setup.js",
     "start": "node app.js",
     "test:eslint": "eslint app.js ./src/*.js --fix",
     "test:stylelint": "stylelint ./public/styles.css --syntax css",
