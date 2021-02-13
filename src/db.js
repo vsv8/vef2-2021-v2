@@ -29,9 +29,10 @@ async function query(q, values = []) {
 
     return result.rows;
   } catch (err) {
-    throw err;
+    console.log(err); // eslint-disable-line
+    return err;
   } finally {
-    await client.end();
+    await client.release();
   }
 }
 
@@ -48,9 +49,9 @@ async function insert(data) {
 }
 
 async function select() {
-  const result = await query('SELECT * FROM signatures');
+  const result = await query('SELECT * FROM signatures ORDER BY id');
 
   return result;
 }
 
-export { insert, select };
+export { insert, select, query };

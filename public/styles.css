@@ -1,0 +1,94 @@
+* {
+  box-sizing: border-box;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  max-width: 1400px;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+body {
+  background-color: #ffffee;
+}
+
+input {
+  border: 1px solid #d1d29d;
+  border-radius: 5px;
+}
+  
+textarea {
+  border: 1px solid #d1d29d;
+  border-radius: 5px;
+  margin: 0;
+  height: 60px;
+  width: 800px;
+}
+
+label {
+  margin: 0;
+  flex: 1;
+}
+
+input {
+  margin: 0;
+
+}
+
+button {
+  background-color: #fff;
+  border: 1px solid #d1d29d;
+  border-radius: 5px;
+  font-size: 1.5em;
+  margin: 0 auto;
+  padding: 10px 20px;
+}
+
+table, td {
+  border: 1px solid #d1d29d;
+  border-collapse: collapse;
+  padding: 10px 5px;
+}
+
+hr {
+  border: 1px solid #d1d29d;
+  border-style: dashed;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.items {
+  margin: 50px 200px 0;
+}
+
+.checkbox {
+  max-width: 20px;
+  margin-right: 5px;
+  margin-top: 3px;
+}
+
+.form {
+  display: flex;
+  flex-direction: row;
+  align-content: space-between;
+}
+
+.form--invalid input,
+.form--invalid textarea {
+  border-color: #855;
+  background-color: #fbb;
+}
+
+.sign-element {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0;
+}
+
+.text {
+  height: 30px;
+  width: 800px;
+}
+

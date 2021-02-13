@@ -1,6 +1,6 @@
 import express from 'express';
-import { insert, select } from './db.js';
 import { body, validationResult } from 'express-validator';
+import { insert, select } from './db.js';
 
 export const router = express.Router();
 
@@ -12,7 +12,7 @@ const validate = [
   body('name')
     .isLength({ min: 1 })
     .withMessage('Nafn má ekki vera tómt'),
-  
+
   body('name')
     .isLength({ max: 128 })
     .withMessage('Nafn má ekki vera lengra en 128 stafir'),
@@ -24,13 +24,13 @@ const validate = [
   body('comment')
     .isLength({ max: 512 })
     .withMessage('Athugasemd má ekki vera meira en 512 stafir'),
-]
+];
 
 const sanitize = [
   body('name').trim().escape(),
   body('email').normalizeEmail(),
   body('nationalId').blacklist('-'),
-]
+];
 
 async function showErrors(req, res, next) {
   const signatures = await select();
@@ -44,11 +44,13 @@ async function showErrors(req, res, next) {
   } = req;
 
   const data = {
+    title: 'Undirskrift',
     signatures,
     name,
     nationalId,
     comment,
     anonymous,
+    errors: [],
   };
 
   const validation = validationResult(req);
@@ -60,6 +62,12 @@ async function showErrors(req, res, next) {
 
     return res.render('sign', data);
   }
+
+  signatures.forEach((signature) => {
+    if (data.nationalId === signature.nationalid) {
+      res.render('error');
+    }
+  });
 
   return next();
 }
@@ -73,10 +81,10 @@ async function sign(req, res) {
     nationalId: '',
     comment: '',
     anonymous: '',
-    errors: []
+    errors: [],
   };
 
-  res.render('sign', data );
+  res.render('sign', data);
 }
 
 async function saveSignature(req, res) {
@@ -84,15 +92,17 @@ async function saveSignature(req, res) {
     name,
     nationalId,
     comment,
-    anonymous
+    anonymous,
   } = req.body;
 
-  console.log("anonymous: " + anonymous)
-
   if (anonymous === undefined) {
-    await insert({name, nationalId, comment, anonymous: false});
+    await insert({
+      name, nationalId, comment, anonymous: false,
+    });
   } else {
-    await insert({name, nationalId, comment, anonymous});
+    await insert({
+      name, nationalId, comment, anonymous,
+    });
   }
 
   return res.redirect('/');
@@ -105,5 +115,5 @@ router.post(
   validate,
   showErrors,
   sanitize,
-  catchErrors(saveSignature)
+  catchErrors(saveSignature),
 );
