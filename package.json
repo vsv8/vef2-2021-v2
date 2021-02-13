@@ -5,6 +5,7 @@
   "main": ".eslintrc.js",
   "type": "module",
   "scripts": {
+    "start": "node app.js",
     "test:eslint": "eslint app.js ./src/*.js --fix",
     "test:stylelint": "stylelint ./public/styles.css --syntax css",
     "test": "concurrently npm:test:*"
@@ -33,6 +34,7 @@
     "ejs": "^3.1.5",
     "express": "^4.17.1",
     "express-validator": "^6.9.2",
+    "heroku": "^7.47.12",
     "pg": "^8.5.1"
   }
 }
