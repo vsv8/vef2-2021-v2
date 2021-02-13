@@ -3,11 +3,10 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-// const {
-//   DATABASE_URL: connectionString,
-// } = process.env;
-
-const connectionString = 'postgres://vikkisibbi@localhost/vef2-2021-v2';
+const {
+  DATABASE_URL: connectionString,
+  NODE_ENV: nodeEnv = 'development',
+} = process.env;
 
 if (!connectionString) {
   console.error('Vantar DATABASE_URL');
