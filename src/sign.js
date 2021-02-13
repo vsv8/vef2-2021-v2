@@ -1,11 +1,26 @@
 import express from 'express';
 import { body, validationResult } from 'express-validator';
 import { insert, select } from './db.js';
+import xss from 'xss';
 
 export const router = express.Router();
 
 function catchErrors(fn) {
   return (req, res, next) => fn(req, res, next).catch(next);
+}
+
+function Xss(field) {
+  return (req, res, next) => {
+    if (!req.body) {
+      next();
+    }
+    const param = req.body[field];
+
+    if (param) {
+      req.body[field] = xss(param);
+    }
+    next();
+  };
 }
 
 const validate = [
@@ -28,8 +43,11 @@ const validate = [
 
 const sanitize = [
   body('name').trim().escape(),
-  body('email').normalizeEmail(),
+  Xss('name'),
   body('nationalId').blacklist('-'),
+  Xss('nationalId'),
+  body('comment').trim().escape(),
+  Xss('comment'),
 ];
 
 async function showErrors(req, res, next) {
