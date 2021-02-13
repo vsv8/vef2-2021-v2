@@ -9,10 +9,6 @@ const app = express();
 const viewsPath = new URL('./views', import.meta.url).pathname;
 // const publicPath = new URL('./public', import.meta.url).pathname;
 
-// const {
-//     PORT: port = 3000,
-// } = process.env;
-
 app.set('views', viewsPath);
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
@@ -37,8 +33,11 @@ app.use('/', router);
 app.use(notFoundHandler);
 app.use(errorHandler);
 
-const hostname = '127.0.0.1';
-const port = 3000;
+const hostname = 'localhost';
+
+const {
+  PORT: port = 3000,
+} = process.env;
 
 app.listen(port, hostname, () => {
   console.info(`Server running at http://${hostname}:${port}/`);
