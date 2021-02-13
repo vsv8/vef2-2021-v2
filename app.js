@@ -33,12 +33,10 @@ app.use('/', router);
 app.use(notFoundHandler);
 app.use(errorHandler);
 
-const hostname = 'localhost';
-
 const {
   PORT: port = 3000,
 } = process.env;
 
 app.listen(port, hostname, () => {
-  console.info(`Server running at http://${hostname}:${port}/`);
+  console.info(`Server running at http://localhost:${port}/`);
 });
