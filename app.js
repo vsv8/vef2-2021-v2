@@ -37,6 +37,6 @@ const {
   PORT: port = 3000,
 } = process.env;
 
-app.listen(port, hostname, () => {
+app.listen(port, () => {
   console.info(`Server running at http://localhost:${port}/`);
 });
